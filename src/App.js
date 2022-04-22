@@ -18,7 +18,7 @@ import * as serviceWorkerRegistration from './serviceWorkerRegistration';
       }
     }
     )
-    serviceWorkerRegistration.showNotification()
+    serviceWorkerRegistration.showNotification('Test Notification')
   }
   return (
     <div className="App">
