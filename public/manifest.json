@@ -30,7 +30,7 @@
       "url": "/",
       "icons": [
         {
-          "src": "/icon.png",
+          "src": "logo512.png",
           "sizes": "192x192",
           "type": "image/png"
         }
@@ -42,7 +42,7 @@
       "url": "/",
       "icons": [
         {
-          "src": "/icon.png",
+          "src": "logo512.png",
           "sizes": "192x192",
           "type": "image/png"
         }
