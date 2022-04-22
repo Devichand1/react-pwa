@@ -1,4 +1,4 @@
-export const sendNotification=({body, title})=>  Notification.requestPermission().then(permission => {
+export const sendNotification=(body, title)=>  Notification.requestPermission().then(permission => {
     if (permission === 'granted') {
       new Notification( title? title: 'Title', {
         body: body? body: 'This is body',
