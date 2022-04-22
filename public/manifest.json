@@ -22,32 +22,6 @@
   "theme_color": "#F4BD42",
   "background_color": "#2B2929",
   "display": "standalone",
-  "scope": "/",
-  "shortcuts": [
-    {
-      "name": "Pay Now",
-      "short_name": "pay",
-      "url": "/",
-      "icons": [
-        {
-          "src": "logo512.png",
-          "sizes": "192x192",
-          "type": "image/png"
-        }
-      ]
-    },
-    {
-      "name": "Company",
-      "short_name": "Company",
-      "url": "/",
-      "icons": [
-        {
-          "src": "logo512.png",
-          "sizes": "192x192",
-          "type": "image/png"
-        }
-      ]
-    }
-  ]
+  "scope": "/"
 }
 
