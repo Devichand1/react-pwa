@@ -6,6 +6,7 @@ import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 const App = () => {
   const [isLoactionLoaded, setisLoactionLoaded] = useState();
   const [networkInfo, setnetworkInfo] = useState()
+  const [isContactSupported, setisContactSupported] = useState(false)
   const videoref =useRef()
   const [otp, setotp] = useState()
   useEffect(() => {
@@ -84,7 +85,7 @@ const App = () => {
   }
   const getContactList=()=>{
     const supported = ('contacts' in navigator && 'ContactsManager' in window);
-    var contactsManager = navigator.contacts;
+    var contactsManager = navigator.con
 
     console.log("supported", supported, contactsManager);
   }
@@ -111,6 +112,9 @@ const App = () => {
       </button>
       <button className="btn" onClick={getContactList} >see contact list
 </button>
+{
+  isContactSupported? <button className="btn" onClick={accessCamera}>access camera</button>:null
+}
          </div>
   );
 };
