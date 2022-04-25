@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 import "./App.css";
 import { sendNotification } from "./service/Notification";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 const App = () => {
   const [isLoactionLoaded, setisLoactionLoaded] = useState();
+  const videoref =useRef()
   const [otp, setotp] = useState()
   useEffect(() => {
     if ("OTPCredential" in window) {
@@ -62,6 +63,21 @@ const App = () => {
         return "An unknown error occurred.";
     }
   }
+  const accessCamera=async()=>{
+     const stream = await navigator.mediaDevices.getUserMedia({
+      audio: false,
+      video: true
+    })
+    const videoTracks = stream.getVideoTracks();
+    const track = videoTracks[0];
+
+    alert(`Getting video from: ${track.label}`)
+
+    // videoref.current = stream;
+  }
+  const handleVibrate=()=>{
+    navigator.vibrate(1000)
+  }
   return (
     <div className="App">
       <button className="btn" onClick={handleNotification}>
@@ -77,7 +93,10 @@ const App = () => {
         </p>
       ) : null}
       <p>OTP is {otp}</p>
-    </div>
+      <button className="btn" onClick={handleVibrate}>
+        Vibrate
+      </button>
+         </div>
   );
 };
 
