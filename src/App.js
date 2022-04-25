@@ -5,6 +5,7 @@ import { sendNotification } from "./service/Notification";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 const App = () => {
   const [isLoactionLoaded, setisLoactionLoaded] = useState();
+  const [networkInfo, setnetworkInfo] = useState()
   const videoref =useRef()
   const [otp, setotp] = useState()
   useEffect(() => {
@@ -78,6 +79,15 @@ const App = () => {
   const handleVibrate=()=>{
     navigator.vibrate(1000)
   }
+  const getNetworkInfo=()=>{
+    console.log("network", navigator.connection.type);
+  }
+  const getContactList=()=>{
+    const supported = ('contacts' in navigator && 'ContactsManager' in window);
+    var contactsManager = navigator.contacts;
+
+    console.log("supported", supported, contactsManager);
+  }
   return (
     <div className="App">
       <button className="btn" onClick={handleNotification}>
@@ -96,6 +106,11 @@ const App = () => {
       <button className="btn" onClick={handleVibrate}>
         Vibrate
       </button>
+      <button className="btn" onClick={getNetworkInfo}>
+        get network info
+      </button>
+      <button className="btn" onClick={getContactList} >see contact list
+</button>
          </div>
   );
 };
