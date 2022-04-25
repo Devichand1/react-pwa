@@ -11,7 +11,7 @@ const App = () => {
   const [otp, setotp] = useState()
   useEffect(() => {
     if ("OTPCredential" in window) {
-      const ac = new AbortController();
+      const ac = new AbortController()
     
       navigator.credentials
         .get({
@@ -52,19 +52,6 @@ const App = () => {
       }
     );
   };
-
-  function locationError(error) {
-    switch (error.code) {
-      case error.PERMISSION_DENIED:
-        return "User denied the request for geolocation.";
-      case error.POSITION_UNAVAILABLE:
-        return "Location information is currently unavailable.";
-      case error.TIMEOUT:
-        return "Request for user location timed out.";
-      case error.UNKNOWN_ERROR:
-        return "An unknown error occurred.";
-    }
-  }
   const accessCamera=async()=>{
      const stream = await navigator.mediaDevices.getUserMedia({
       audio: false,
@@ -113,7 +100,7 @@ const App = () => {
       <button className="btn" onClick={getContactList} >see contact list
 </button>
 {
-  isContactSupported? <button className="btn" onClick={accessCamera}>access camera</button>:null
+  isContactSupported? <p>show contact list here</p>:null
 }
          </div>
   );
