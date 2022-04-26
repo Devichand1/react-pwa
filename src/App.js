@@ -7,22 +7,22 @@ import { handleVibrate } from "./service/Vibrate";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 const App = () => {
   const [isLoactionLoaded, setisLoactionLoaded] = useState();
-  const [networkInfo, setnetworkInfo] = useState()
-  const [isContactSupported, setisContactSupported] = useState(null)
-  const videoref =useRef()
-  const [otp, setotp] = useState()
+  const [networkInfo, setnetworkInfo] = useState();
+  const [isContactSupported, setisContactSupported] = useState(null);
+  const videoref = useRef();
+  const [otp, setotp] = useState();
   useEffect(() => {
     // serviceWorkerRegistration.getBetteryInfo()
     if ("OTPCredential" in window) {
-      const ac = new AbortController()
-    
+      const ac = new AbortController();
+
       navigator.credentials
         .get({
           otp: { transport: ["sms"] },
-          signal: ac.signal
+          signal: ac.signal,
         })
         .then((otp) => {
-          setotp(otp.code)
+          setotp(otp.code);
           ac.abort();
         })
         .catch((err) => {
@@ -30,10 +30,9 @@ const App = () => {
           console.log(err);
         });
     }
-  }, [])
+  }, []);
   const handleNotification = () => {
-
-    //from browser 
+    //from browser
     Notification.requestPermission().then((permission) => {
       if (permission === "granted") {
         sendNotification(
@@ -42,26 +41,28 @@ const App = () => {
         );
       }
     });
- // from PWA
+    // from PWA
     serviceWorkerRegistration.showNotification("Test Notification");
   };
 
-
-  const getNetworkDetails=()=>{
-    serviceWorkerRegistration.getNetworkInfo()
-  }
-  const getContactList=()=>{
-    const supported = ('contacts' in navigator && 'ContactsManager' in window);
-    var contactsManager = navigator.canShare
+  const getNetworkDetails = () => {
+    serviceWorkerRegistration.getNetworkInfo();
+  };
+  const getContactList = () => {
+    const supported = "contacts" in navigator && "ContactsManager" in window;
+    var contactsManager = navigator.canShare;
 
     console.log("supported", supported, contactsManager);
-  }
+  };
   return (
     <div className="App">
       <button className="btn" onClick={handleNotification}>
         Send Custom notification (PWA)
       </button>
-      <button className="btn" onClick={()=>handleGetLocation(setisLoactionLoaded)}>
+      <button
+        className="btn"
+        onClick={() => handleGetLocation(setisLoactionLoaded)}
+      >
         Get Location
       </button>
       {isLoactionLoaded ? (
@@ -74,18 +75,17 @@ const App = () => {
       <button disabled className="btn" onClick={handleVibrate}>
         Reading Otp ( only in chrome android )
       </button>
-      {/* <button className="btn" onClick={handleVibrate}>
+      <button className="btn" onClick={handleVibrate}>
         Vibrate (only Mobile)
       </button>
-      <button className="btn" onClick={getNetworkDetails}>
+      {/*   <button className="btn" onClick={getNetworkDetails}>
         get network info
       </button> */}
-      <button className="btn" onClick={getContactList} >see contact list
-</button>
-{
-  isContactSupported===false ? <p>show contact list here</p>:null
-}
-         </div>
+      <button className="btn" onClick={getContactList}>
+        see contact list
+      </button>
+      {isContactSupported === false ? <p>show contact list here</p> : null}
+    </div>
   );
 };
 
