@@ -156,3 +156,9 @@ export function getNetworkInfo(){
   var type = navigator.connection?.type;
   console.log('type',type);
 }
+// export function getBetteryInfo(){
+//   var battery = navigator?.getBattery();
+//   battery.then((battery) => {
+//     console.log('battery',battery);
+//   });
+// }

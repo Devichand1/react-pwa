@@ -12,6 +12,7 @@ const App = () => {
   const videoref =useRef()
   const [otp, setotp] = useState()
   useEffect(() => {
+    // serviceWorkerRegistration.getBetteryInfo()
     if ("OTPCredential" in window) {
       const ac = new AbortController()
     
@@ -45,18 +46,7 @@ const App = () => {
     serviceWorkerRegistration.showNotification("Test Notification");
   };
 
-  const accessCamera=async()=>{
-     const stream = await navigator.mediaDevices.getUserMedia({
-      audio: false,
-      video: true
-    })
-    const videoTracks = stream.getVideoTracks();
-    const track = videoTracks[0];
 
-    alert(`Getting video from: ${track.label}`)
-
-    // videoref.current = stream;
-  }
   const getNetworkDetails=()=>{
     serviceWorkerRegistration.getNetworkInfo()
   }
@@ -84,13 +74,12 @@ const App = () => {
       <button disabled className="btn" onClick={handleVibrate}>
         Reading Otp ( only in chrome android )
       </button>
-      <p>OTP is {otp}</p>
-      <button className="btn" onClick={handleVibrate}>
+      {/* <button className="btn" onClick={handleVibrate}>
         Vibrate (only Mobile)
       </button>
       <button className="btn" onClick={getNetworkDetails}>
         get network info
-      </button>
+      </button> */}
       <button className="btn" onClick={getContactList} >see contact list
 </button>
 {
