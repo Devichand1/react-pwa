@@ -1,28 +1,28 @@
 import React, { useState, useEffect, useRef } from "react";
 
-import "./App.css";
-import { handleGetLocation } from "./service/geoLocation";
-import { sendNotification } from "./service/Notification";
-import { handleVibrate } from "./service/Vibrate";
+import handleGetLocation from "./service/geoLocation";
+import sendNotification from "./service/notification";
+import handleVibrate from "./service/vibrate";
+
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
+
+import "./App.css";
+
 const App = () => {
   const [isLoactionLoaded, setisLoactionLoaded] = useState();
-  const [networkInfo, setnetworkInfo] = useState();
-  const [isContactSupported, setisContactSupported] = useState(null);
-  const videoref = useRef();
-  const [otp, setotp] = useState();
+  const [isContactSupported] = useState(null);
+  const [otp, setOTP] = useState();
+
   useEffect(() => {
-    // serviceWorkerRegistration.getBetteryInfo()
     if ("OTPCredential" in window) {
       const ac = new AbortController();
-
       navigator.credentials
         .get({
           otp: { transport: ["sms"] },
           signal: ac.signal,
         })
         .then((otp) => {
-          setotp(otp.code);
+          setOTP(otp.code);
           ac.abort();
         })
         .catch((err) => {
@@ -31,6 +31,7 @@ const App = () => {
         });
     }
   }, []);
+
   const handleNotification = () => {
     //from browser
     Notification.requestPermission().then((permission) => {
@@ -45,15 +46,14 @@ const App = () => {
     serviceWorkerRegistration.showNotification("Test Notification");
   };
 
-  const getNetworkDetails = () => {
-    serviceWorkerRegistration.getNetworkInfo();
-  };
+
   const getContactList = () => {
     const supported = "contacts" in navigator && "ContactsManager" in window;
     var contactsManager = navigator.canShare;
 
     console.log("supported", supported, contactsManager);
   };
+
   return (
     <div className="App">
       <button className="btn" onClick={handleNotification}>
@@ -78,9 +78,6 @@ const App = () => {
       <button className="btn" onClick={handleVibrate}>
         Vibrate (only Mobile)
       </button>
-      {/*   <button className="btn" onClick={getNetworkDetails}>
-        get network info
-      </button> */}
       <button className="btn" onClick={getContactList}>
         see contact list
       </button>
