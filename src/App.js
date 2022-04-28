@@ -1,16 +1,14 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect} from "react";
 
 import handleGetLocation from "./service/geoLocation";
-import sendNotification from "./service/notification";
+import sendNotification, { showNotification } from "./service/notification";
 import handleVibrate from "./service/vibrate";
 
-import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 
 import "./App.css";
 
 const App = () => {
   const [isLoactionLoaded, setisLoactionLoaded] = useState();
-  const [isContactSupported] = useState(null);
   const [otp, setOTP] = useState();
 
   useEffect(() => {
@@ -43,19 +41,28 @@ const App = () => {
       }
     });
     // from PWA
-    serviceWorkerRegistration.showNotification("Test Notification");
+   showNotification("Test Notification");
   };
 
-
-  const getContactList = () => {
-    const supported = "contacts" in navigator && "ContactsManager" in window;
-    var contactsManager = navigator.canShare;
-
-    console.log("supported", supported, contactsManager);
-  };
+  const accessCamera=async()=>{
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({
+        audio: false,
+        video: true,
+      })
+      const videoTracks = stream.getVideoTracks()
+      const track = videoTracks[0]
+      alert(`Getting video from: ${track.label}`)
+      document.getElementById('video').srcObject = stream
+    } catch (error) {
+      alert(`${error.name}`)
+      console.error(error)
+    }
+  }
 
   return (
     <div className="App">
+    <h2>React - PWA</h2>
       <button className="btn" onClick={handleNotification}>
         Send Custom notification (PWA)
       </button>
@@ -68,7 +75,7 @@ const App = () => {
       {isLoactionLoaded ? (
         <p>
           Your current location is (Latitude: {isLoactionLoaded.coords.latitude}{" "}
-          ,Longitude: {isLoactionLoaded.coords.longitude} )
+          , Longitude: {isLoactionLoaded.coords.longitude} )
         </p>
       ) : null}
 
@@ -78,10 +85,19 @@ const App = () => {
       <button className="btn" onClick={handleVibrate}>
         Vibrate (only Mobile)
       </button>
-      <button className="btn" onClick={getContactList}>
-        see contact list
+      <label htmlFor="input-file" >
+        <button className="btn">Storage</button>
+        <input
+          id="input-file"
+          type="file"
+        />
+      </label>
+      <button className="btn" style={{ backgroundColor: "gray" }}>
+        Plateform = {navigator.platform}{" "}
       </button>
-      {isContactSupported === false ? <p>show contact list here</p> : null}
+      <button className="btn"  onClick={accessCamera} >Access Camera</button>
+
+      <video id="video" autoplay></video>
     </div>
   );
 };

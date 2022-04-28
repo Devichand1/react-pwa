@@ -137,28 +137,3 @@ export function unregister() {
       });
   }
 }
-export function showNotification(body, title, icon, tag) {
-  Notification.requestPermission(function(result) {
-    if (result === 'granted') {
-      navigator.serviceWorker.ready.then(function(registration) {
-        registration.showNotification('Vibration Sample', {
-          body:body? body: 'Buzz! Buzz!',
-          icon: '../public/logo192.png',
-          vibrate: [200, 100, 200, 100, 200, 100, 200],
-          tag: 'vibration-sample'
-        });
-      });
-    }
-  });
-}
-
-export function getNetworkInfo(){
-  var type = navigator.connection?.type;
-  console.log('type',type);
-}
-// export function getBetteryInfo(){
-//   var battery = navigator?.getBattery();
-//   battery.then((battery) => {
-//     console.log('battery',battery);
-//   });
-// }
