@@ -19,6 +19,10 @@ const QRScanner = () => {
    </div>
  <QrReader 
  scanDelay={100}
+ constraints={{
+   facingMode:'environment',
+ }}
+ enableCamera={true}
  containerStyle={{
    backgroundColor:"#00000099",
    width:'100%',
