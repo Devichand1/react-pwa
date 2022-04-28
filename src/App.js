@@ -95,12 +95,10 @@ const App = () => {
       <button className="btn" style={{ backgroundColor: "gray" }}>
         Plateform = {navigator.platform}{" "}
       </button>
-      <button className="btn"  onClick={accessCamera} >Access Camera</button>
-
-      <video id="video" autoplay></video>
-      <input accept="image/*" id="icon-button-file" type="file" capture="environment"/>
+      <button className="btn"  onClick={accessCamera} >Access Camera
+      <input accept="image/*" id="icon-button-file" type="file" capture="environment"/></button>
     </div>
   );
 };
 
-export default App;
+export default App ; 
