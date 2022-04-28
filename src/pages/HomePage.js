@@ -3,12 +3,13 @@ import React, { useState, useEffect} from "react";
 import handleGetLocation from "../service/geoLocation";
 import sendNotification, { showNotification } from "../service/notification";
 import handleVibrate from "../service/vibrate";
-import QrReader from 'react-qr-scanner'
+import { useNavigate } from "react-router";
 
 
 const HomePage = () => {
   const [isLoactionLoaded, setisLoactionLoaded] = useState();
   const [otp, setOTP] = useState();
+  const navigate = useNavigate()
 
   useEffect(() => {
     if ("OTPCredential" in window) {
@@ -100,6 +101,9 @@ const HomePage = () => {
       </button>
       <button className="btn"  onClick={accessCamera} >Access Camera
       <input accept="image/*" onChange={(res)=>console.log('log',res)} id="icon-button-file" type="file" capture="environment"/></button>
+      <button onClick={()=>navigate('/scanner')} className="btn">
+       Scan QR
+      </button>
     </div>
   );
 };
