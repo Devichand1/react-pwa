@@ -1,0 +1,19 @@
+.scan-header{
+    background-color: transparent;
+    position: absolute;
+    top: 0;
+    display: flex;
+    width: 90%;
+    align-items: center;
+    color: #fff;
+    padding: 5px 5% ;
+}
+.scan-header h3{
+    margin-left: 10px;
+}
+
+
+
+.add-transition{
+    transition: 0.3s ease;
+}
