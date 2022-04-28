@@ -98,6 +98,7 @@ const App = () => {
       <button className="btn"  onClick={accessCamera} >Access Camera</button>
 
       <video id="video" autoplay></video>
+      <input accept="image/*" id="icon-button-file" type="file" capture="environment"/>
     </div>
   );
 };
