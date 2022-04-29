@@ -21,6 +21,10 @@ const QRScanner = () => {
  scanDelay={100}
  constraints={{
    facingMode:'environment',
+    width: 250,
+    height:250,
+    aspectRatio: 1,
+    
  }}
  enableCamera={true}
  containerStyle={{

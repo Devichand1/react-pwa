@@ -1,15 +1,15 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 
 import handleGetLocation from "../service/geoLocation";
 import sendNotification, { showNotification } from "../service/notification";
 import handleVibrate from "../service/vibrate";
 import { useNavigate } from "react-router";
-
+import getLocalStream from "../service/stream";
 
 const HomePage = () => {
   const [isLoactionLoaded, setisLoactionLoaded] = useState();
   const [otp, setOTP] = useState();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
     if ("OTPCredential" in window) {
@@ -41,32 +41,32 @@ const HomePage = () => {
       }
     });
     // from PWA
-   showNotification("Test Notification");
+    showNotification("Test Notification");
   };
 
-  const accessCamera=async()=>{
+  const accessCamera = async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({
         audio: false,
         video: true,
-      })
-      const videoTracks = stream.getVideoTracks()
-      const track = videoTracks[0]
-      alert(`Getting video from: ${track.label}`)
-      document.getElementById('video').srcObject = stream
+      });
+      const videoTracks = stream.getVideoTracks();
+      const track = videoTracks[0];
+      alert(`Getting video from: ${track.label}`);
+      document.getElementById("video").srcObject = stream;
     } catch (error) {
-      alert(`${error.name}`)
-      console.error(error)
+      alert(`${error.name}`);
+      console.error(error);
     }
-  }
+  };
 
-  const handleScanned=(result)=>{
-    console.log(result)
-    }
+  const handleScanned = (result) => {
+    console.log(result);
+  };
 
   return (
     <div className="App">
-    <h2>React - PWA</h2>
+      <h2>React - PWA</h2>
       <button className="btn" onClick={handleNotification}>
         Send Custom notification (PWA)
       </button>
@@ -89,23 +89,31 @@ const HomePage = () => {
       <button className="btn" onClick={handleVibrate}>
         Vibrate (only Mobile)
       </button>
-      <label htmlFor="input-file" >
+      <button onClick={() => navigate("/stream")} className="btn">
+        Stream
+      </button>
+      <label htmlFor="input-file">
         <button className="btn">Storage</button>
-        <input
-          id="input-file"
-          type="file"
-        />
+        <input id="input-file" type="file" />
       </label>
       <button className="btn" style={{ backgroundColor: "gray" }}>
         Plateform = {navigator.platform}{" "}
       </button>
-      <button className="btn"  onClick={accessCamera} >Access Camera
-      <input accept="image/*" onChange={(res)=>console.log('log',res)} id="icon-button-file" type="file" capture="environment"/></button>
-      <button onClick={()=>navigate('/scanner')} className="btn">
-       Scan QR
+      <button className="btn" onClick={accessCamera}>
+        Access Camera
+        <input
+          accept="image/*"
+          onChange={(res) => console.log("log", res)}
+          id="icon-button-file"
+          type="file"
+          capture="environment"
+        />
+      </button>
+      <button onClick={() => navigate("/scanner")} className="btn">
+        Scan QR
       </button>
     </div>
   );
 };
 
-export default HomePage ; 
+export default HomePage;
