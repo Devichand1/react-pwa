@@ -4,7 +4,6 @@ import handleGetLocation from "../service/geoLocation";
 import sendNotification, { showNotification } from "../service/notification";
 import handleVibrate from "../service/vibrate";
 import { useNavigate } from "react-router";
-import getLocalStream from "../service/stream";
 
 const HomePage = () => {
   const [isLoactionLoaded, setisLoactionLoaded] = useState();
@@ -58,10 +57,6 @@ const HomePage = () => {
       alert(`${error.name}`);
       console.error(error);
     }
-  };
-
-  const handleScanned = (result) => {
-    console.log(result);
   };
 
   return (

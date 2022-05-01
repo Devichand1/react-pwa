@@ -1,0 +1,5 @@
+[{
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target" : { "namespace": "android_app", "package_name": "com.rnapp",
+                 "sha256_cert_fingerprints": ["68:42:45:B6:02:5B:94:B5:CC:57:B1:5C:6A:52:F8:52:43:49:90:64:54:99:0B:DD:8B:49:96:79:2F:16:2B:AD"] }
+  }]
