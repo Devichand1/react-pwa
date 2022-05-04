@@ -16,6 +16,7 @@ export function showNotification(body, title, icon, tag) {
           icon: "../public/logo192.png",
           vibrate: [200, 100, 200, 100, 200, 100, 200],
           tag: "vibration-sample",
+          image:'https://vermontplankflooring.com/wp-content/uploads/2018/11/wide-plank-hickory-floor.jpg'
         });
       });
     }
