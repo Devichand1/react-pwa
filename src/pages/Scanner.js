@@ -43,7 +43,6 @@ const QRScanner = () => {
 
           if (!!error) {
             console.info("failed",error);
-            window.alert("Scan failed");
           }
         }}
       />
