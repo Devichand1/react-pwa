@@ -34,7 +34,7 @@ const QRScanner = () => {
           onResult={(result, error) => {
           if (!!result) {
             handleScanned(result);
-            window.alert("Scan Successful");
+            window.alert("Scan Successful", result);
           }
 
           if (!!error) {
