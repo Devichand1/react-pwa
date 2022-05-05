@@ -32,16 +32,18 @@ const QRScanner = () => {
           onError={(err) => console.log(err)}
           onScan={(data) => console.log(data)}
           // chooseDeviceId={()=>selected}
-          containerStyle={{ width: "50%", heigth: "200px" }}
+          containerStyle={{ width: "100%", heigth: "200px" }}
           videoContainerStyle={{ width: "100%", heigth: "200px", border: "1px solid red" }}
           videoStyle={{ width: "100%", heigth: "100px", border: "1px solid red" }}
-        onResult={(result, error) => {
+          onResult={(result, error) => {
           if (!!result) {
             handleScanned(result);
+            window.alert("Scan Successful");
           }
 
           if (!!error) {
-            console.info(error);
+            console.info("failed",error);
+            window.alert("Scan failed");
           }
         }}
       />
