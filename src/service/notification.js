@@ -20,7 +20,7 @@ export function showNotification(body, title, icon, tag) {
           actions: [
             {
               action: 'https.google.com',
-              title: 'Coffee',
+              title: 'click here to open',
               icon: 'https://cdn.onlinewebfonts.com/svg/img_286633.png'
             }
           ]
