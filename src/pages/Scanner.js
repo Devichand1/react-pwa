@@ -24,13 +24,9 @@ const QRScanner = () => {
       </div>
       <QrReader
         scanDelay={100}
-
-        enableCamera={true}
-
-        facingMode={"environment"}
-          delay={500}
+        constraints={{facingMode: "environment"  }}
           onError={(err) => console.log(err)}
-          onScan={(data) => console.log(data)}
+          onScan={(data) => window.alert("Scan Successful")}
           // chooseDeviceId={()=>selected}
           containerStyle={{ width: "100%", heigth: "200px" }}
           videoContainerStyle={{ width: "100%", heigth: "200px", border: "1px solid red" }}
@@ -42,7 +38,7 @@ const QRScanner = () => {
           }
 
           if (!!error) {
-            console.info("failed",error);
+            console.info("failed");
           }
         }}
       />
