@@ -24,30 +24,17 @@ const QRScanner = () => {
       </div>
       <QrReader
         scanDelay={100}
-        constraints={{
-          facingMode: "environment",
-          width: 250,
-          height: 250,
-          aspectRatio: 1,
-        }}
+
         enableCamera={true}
-        containerStyle={{
-          backgroundColor: "#00000099",
-          width: "100%",
-          display: "flex",
-          jusstifyContent: "center",
-          alignItems: "center",
-          height: "100vh",
-        }}
-        videoStyle={{
-          width: "80%",
-          marginLeft: "10%",
-          borderRadius: "10px",
-        }}
-        videoContainerStyle={{
-          width: "100%",
-          borderRadius: "10px",
-        }}
+
+        facingMode={"user"}
+          delay={500}
+          onError={(err) => console.log(err)}
+          onScan={(data) => console.log(data)}
+          // chooseDeviceId={()=>selected}
+          containerStyle={{ width: "200px", heigth: "200px" }}
+          videoContainerStyle={{ width: "300px", heigth: "200px", border: "1px solid red" }}
+          videoStyle={{ width: "300px", heigth: "100px", border: "1px solid red" }}
         onResult={(result, error) => {
           if (!!result) {
             handleScanned(result);

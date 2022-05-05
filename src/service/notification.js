@@ -16,7 +16,14 @@ export function showNotification(body, title, icon, tag) {
           icon: "../public/logo192.png",
           vibrate: [200, 100, 200, 100, 200, 100, 200],
           tag: "Test",
-          image:'https://vermontplankflooring.com/wp-content/uploads/2018/11/wide-plank-hickory-floor.jpg'
+          image:'https://vermontplankflooring.com/wp-content/uploads/2018/11/wide-plank-hickory-floor.jpg',
+          actions: [
+            {
+              action: 'https.google.com',
+              title: 'Coffee',
+              icon: 'https://cdn.onlinewebfonts.com/svg/img_286633.png'
+            }
+          ]
         });
       });
     }

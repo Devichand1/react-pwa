@@ -94,16 +94,6 @@ const HomePage = () => {
       <button className="btn" style={{ backgroundColor: "gray" }}>
         Plateform = {navigator.platform}{" "}
       </button>
-      <button className="btn" onClick={accessCamera}>
-        Access Camera
-        <input
-          accept="image/*"
-          onChange={(res) => console.log("log", res)}
-          id="icon-button-file"
-          type="file"
-          capture="environment"
-        />
-      </button>
       <button onClick={() => navigate("/scanner")} className="btn">
         Scan QR
       </button>
