@@ -85,7 +85,7 @@ const HomePage = () => {
         Vibrate (only Mobile)
       </button>
       <button onClick={() => navigate("/stream")} className="btn">
-        Stream
+        Stream (Record)
       </button>
       <label htmlFor="input-file">
         <button className="btn">Storage</button>
