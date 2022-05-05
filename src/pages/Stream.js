@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 const Stream = () => {
-  const [stopRecording, setstopRecording] = useState()
-  const [startRecording, setstartRecording] = useState()
+  const [count, setcount] = useState(10)
   
   useEffect(() => {
     var video = document.querySelector("#videoElement");
@@ -28,12 +27,26 @@ function handleDataAvailable(event) {
     // ...
   }
 }
+function download(recordedChunks) {
+  var blob = new Blob(recordedChunks, {
+    type: "video/webm"
+  });
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement("a");
+  document.body.appendChild(a);
+  a.style = "display: none";
+  a.href = url;
+  a.download = "test.webm";
+  a.click();
+  window.URL.revokeObjectURL(url);
+}
+setTimeout(() => {
+    video.srcObject = null;
+  mediaRecorder.stop();
+},11000);
 
 // demo: to download after 9sec
-if(stopRecording){
-  video.srcObject = null;
-  mediaRecorder.stop();
-}
+
 
         
         })
@@ -46,38 +59,53 @@ if(stopRecording){
 
 
 
-  }, [stopRecording, startRecording]);
-  function download(recordedChunks) {
-    var blob = new Blob(recordedChunks, {
-      type: "video/webm"
-    });
-    var url = URL.createObjectURL(blob);
-    var a = document.createElement("a");
-    document.body.appendChild(a);
-    a.style = "display: none";
-    a.href = url;
-    a.download = "test.webm";
-    a.click();
-    window.URL.revokeObjectURL(url);
-  }
+  }, []);
+  useEffect(() => {
+    if(count > 0){ 
+       setTimeout(() => {
+     setcount(count - 1)
+   }, 1000);
+    }
+ 
+  }, [count])
+
+ 
 
 
 
   const stoprecording = () => {
-    setstopRecording(true)
+    // setstopRecording(true)
 
   }
 
-  const startrecording = () => {
-    setstartRecording(true)
-
-  }
   return (
     <div id="container">
       <video  autoplay="true" id="videoElement"></video>
-      <h3>Recording </h3>
-      <button onClick={()=>stoprecording()} >Stop</button>
-      <button onClick={()=>stoprecording()} >Download</button>
+      <div
+      style={{
+        flexDirection:"row",
+        display:"flex",
+        alignItems:"center",
+      }}
+      >
+    <div
+    style={{
+      content:"",
+      width:'10px',
+      height:"10px",
+      borderRadius:100,
+backgroundColor:"red",
+marginRight:"10px",
+        }}
+    >
+
+    </div>
+
+           <h3>Recording </h3>
+      </div>
+   
+      <p onClick={()=>stoprecording()} >Video will be downloaded after {count}s</p>
+
     </div>
   );
 };
