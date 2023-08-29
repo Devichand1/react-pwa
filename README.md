@@ -11,5 +11,6 @@ React PWA - (Progressive Web App)
   <li><span>&#10004;</span> Mobile Vibration</li>
   <li><span>&#10004;</span> Phone Contact</li>
   <li><span>&#10004;</span> Network Info</li>
+  <li><span>&#10004;</span> Mobile App Shortcuts</li>
 </ol>
  
