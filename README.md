@@ -10,5 +10,6 @@ React PWA - (Progressive Web App)
   <li>Camera</li>
   <li>Mobile Vibration</li>
   <li>Phone Contact</li>
+  <li>Network Info</li>
 </ol>
  
